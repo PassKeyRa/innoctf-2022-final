@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+      <div class="row">
+        <div class="col-sm-12 forms-pixsxs">
+          <h4>{{tred.name}}</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 border">
+          <h5 class="forms-pixs">{{tred.author.username}}</h5>
+	  <img src="/static/img/images.png" class="rounded-circle img-fluid forms-pixs" style="width: 150px;" alt="Avatar"></img>
+	  <small>Registered: {{tred.author.timestamp}}</small>
+	  <small>Messages: {{tred.author.posts.count() + tred.author.threads.count()}}</small>
+        </div>
+        <div class="col-sm-10 border break-word">
+          <p class="text-break" style="white-space: pre-line;">{{tred.body}}</p>
+          {% if tred.file_path %}
+          <img src="/upload/{{ tred.file_path }}">
+          {% endif %}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12">
+          {% if current_user.is_authenticated and current_user == tred.author %}
+	  <form action="{{ url_for('del_thread', th_id=tred.id) }}" method="post">
+		  {{ del_form.hidden_tag() }}
+		  {{ del_form.submit1(class="btn btn-primary btn-sm forms-pixsxs float-right forms-rl btn-dark")}}
+          {% endif %}
+
+          </form>
+        </div>
+      </div>
+      {% for pst in posts %}
+      <div class="row">
+        <div class="col-sm-12">
+          <br>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-2 border">
+          <h5 class="forms-pixs">{{pst.author.username}}</h5>
+	  <img src="/static/img/images.png" class="rounded-circle img-fluid forms-pixs" style="width: 150px;" alt="Avatar"></img>
+	  <small>Registered: {{pst.author.timestamp}}</small>
+	  <small>Messages: {{pst.author.posts.count() + tred.author.threads.count()}}</small>
+        </div>
+        <div class="col-sm-10 border break-word">
+          <p class="text-break" style="white-space: pre-line;">{{pst.body}}</p>
+        </div>
+      </div>
+ 
+      {% endfor %}
+
+    <div class="row">
+        <div class="col-sm-12">
+          <br>
+        </div>
+      </div>
+
+    <div class="row">
+      <div class="col-sm-12 border">
+        {% if current_user.is_authenticated %}
+        <div>
+	    <form action="{{ url_for('post_comment', th_id=tred.id) }}" method="post">
+	    {{ post_form.hidden_tag() }}
+            <label for="comment">Comment</label>
+	    {{ post_form.body(class="form-control", rows="3") }}
+	  {{ post_form.submit2(class="btn btn-primary btn-sm forms-pixsxs float-right forms-rl btn-dark") }}
+          </form>
+        </div>
+        {% endif %}
+        {% if not current_user.is_authenticated %}
+        <div class="alert alert-warning forms-pixs" role="alert">
+          Only registered users can comment!
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}

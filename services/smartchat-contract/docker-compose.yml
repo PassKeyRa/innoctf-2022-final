@@ -1,0 +1,12 @@
+version: '3.4'
+
+services:
+  web:
+    build: 
+      context: .
+      args:
+        NETWORK: geth
+      network: host
+    restart: unless-stopped
+    ports:
+      - '8001:8001'

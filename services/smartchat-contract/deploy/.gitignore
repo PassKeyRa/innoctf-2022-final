@@ -1,0 +1,4 @@
+*.swp
+.secret*
+.wallet*
+node_modules

@@ -1,0 +1,46 @@
+version: '3.4'
+
+services:
+  web:
+    build: ./task/
+      #command: gunicorn -w 6 --bind 0.0.0.0:5000 task:app
+    restart: unless-stopped
+    environment:
+      FLASK_APP: app
+      DATABASE_URL: postgresql://db_admin:v3rY_h4Rd_t0_gu355_p455w0Rd@db:5432/shashlik_forum
+    networks:
+      - db_nw
+      - web_nw
+    depends_on:
+      - db
+  db:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      POSTGRES_DB: shashlik_forum
+      POSTGRES_USER: db_admin
+      POSTGRES_PASSWORD: v3rY_h4Rd_t0_gu355_p455w0Rd
+    networks:
+      - db_nw
+  nginx:
+    image: "nginx:latest"
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/static:/var/www/html/static
+    networks:
+      - web_nw
+    depends_on:
+      - web
+
+networks:
+  db_nw:
+    driver: bridge
+  web_nw:
+    driver: bridge
+volumes:
+  postgres_data:

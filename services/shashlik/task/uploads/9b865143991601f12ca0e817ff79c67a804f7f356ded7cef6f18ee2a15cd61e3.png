@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <title>Shashlik</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/static/css/site_styles.css" rel="stylesheet" media="screen">
+	<script src="/static/js/bootstrap.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #b57555;">
+      <a class="navbar-brand" href="#">Shashlik Forum</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/index">Main page</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/threads">Ararat talks</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="/index">About </a>
+          </li>
+        </ul>
+	
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In</a>
+            <div class="dropdown-menu p-1" aria-labelledby="dropdown03">
+              <form method="POST" action="login">
+		<input id="csrf_token" name="csrf_token" type="hidden" value="Ijg2ODNhMDQwNGVmMzVkODRkZmVmYTg2ODkwZDE4MTdhZDhhNDNiNDki.Yjpm9w.Hycm5iGL7E5GNSvM1Uj4cU8O8YE">
+                <input class="form-control forms-pixsxs" id="username" name="username" placeholder="Username" required type="text" value="">
+                <input class="form-control forms-pixsxs" id="password" name="password" placeholder="Password" required type="password" value="">
+	        <input class="btn" id="submit" name="submit" style="background-color: #b57555;" type="submit" value="Sign In">
+              </form>
+            </div>
+          </li>
+          <li class="nav-item active">
+		  <a class="nav-link" href="/register">Register </a>
+          </li>
+        </ul>
+	
+      </div>
+      </nav>
+        <hr>
+        
+        
+        
+        
+	<img src="/static/img/the-ararat-mountain.jpg" class="rounded mx-auto d-block">
+
+    </body>
+</html>

@@ -1,0 +1,41 @@
+version: '3.4'
+
+services:
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: db_admin
+      POSTGRES_DB: chat_db
+      POSTGRES_PASSWORD: n4pW6BNkhJbbQVPA
+    networks:
+      - chatnet
+  redis:
+    image: redis
+    restart: unless-stopped
+    networks:
+      - chatnet
+    volumes:
+      - ./readis-data:/data
+  web:
+    build: .
+    restart: unless-stopped
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+      - POSTGRES_USER=db_admin
+      - POSTGRES_DBNAME=chat_db
+      - POSTGRES_PASS=n4pW6BNkhJbbQVPA
+      - CONTRACT_ADDRESS=0xad35dF962181d20c9f4A182F53BD18E9a3631387
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "0.0.0.0:8000:8000"
+    networks:
+      - chatnet
+networks:
+  chatnet:
+    driver: bridge

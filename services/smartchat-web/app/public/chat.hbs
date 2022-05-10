@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>SmartChat {{ page-title }}</title>
+
+		<link rel="stylesheet" href="css/style_chat.css" />
+	</head>
+	<body>
+		<div class="header">
+			<div class="header-left">
+				<a>
+					<img src="img/logo.jpg" />
+				</a>
+				<a class="name">SmartChat</a>
+			</div>
+
+			<div class="header-right">
+				<a class="active" href="somewhere">{{ username }}</a>
+			</div>
+		</div>
+
+		<div class="current-room">
+			<p><strong>Current room:</strong> {{ roomname }}</p>
+		</div>
+		<div class="messages">
+			{{#each messages}}
+			<div class="container">
+				<img src="img/brain.jpg" alt="Avatar" class="right" />
+				<span class="username">{{this.author}}</span>
+				<p>{{this.content}}</p>
+			</div> 
+			{{/each}}
+				<input type="name" id="message_form" placeholder="Enter your message" class="room-name" required/>
+				<button id="send_btn" class="submit-btn">Send message</button>
+		</div>
+		<script src="js/chat.js"></script>
+	</body>
+</html>

@@ -1,0 +1,72 @@
+<html>
+    <head>
+        <title>Shashlik 2.0</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+	<link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/static/css/site_styles.css" rel="stylesheet" media="screen">
+	<script src="/static/js/bootstrap.js"></script>
+    </head>
+    <body>
+    <nav class="navbar navbar-expand-sm navbar-light" style="background-color: #b57555;">
+      <a class="navbar-brand" href="#">Shashlik Forum 2.0</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('index')}}">Main page</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('threads')}}">Ararat talks</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{{url_for('index')}}">About </a>
+          </li>
+        </ul>
+	{% if not current_user.is_authenticated %}
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Log In</a>
+            <div class="dropdown-menu p-1" aria-labelledby="dropdown03">
+              <form method="POST" action="login">
+		{{ lgn_form.hidden_tag() }}
+                {{ lgn_form.username(class="form-control forms-pixsxs", placeholder="Username") }}
+                {{ lgn_form.password(class="form-control forms-pixsxs", placeholder="Password") }}
+	        {{ lgn_form.submit(class="btn", style="background-color: #b57555;") }}
+              </form>
+            </div>
+          </li>
+          <li class="nav-item active">
+		  <a class="nav-link" href="{{ url_for('register') }}">Register </a>
+          </li>
+        </ul>
+	{% else %}
+	<ul class="navbar-nav ml-auto top-menu">
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ current_user.username }}</a>
+            <div class="dropdown-menu dropdown-menu-right p-1" aria-labelledby="dropdown03">
+              <h4>{{ current_user.username }}</h4>
+	      <a class="btn btn-block btn-sm btn-light" href="{{url_for('settings')}}" role="button" style="background-color: #b57555;">Settings</a>
+	      <a class="btn btn-block btn-sm btn-light" href="{{url_for('create_theme')}}" role="button" style="background-color: #b57555;">Create thread</a>
+              <a type="button" href="{{url_for('logout')}}" name="logout_btn" class="btn btn-block btn-sm btn-light" style="background-color: #b57555;">Logout</a>
+            </div>
+          </li>
+        </ul>
+        {% endif %}
+      </div>
+      </nav>
+        <hr>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </body>
+</html>

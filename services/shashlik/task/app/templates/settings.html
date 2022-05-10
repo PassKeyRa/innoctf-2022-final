@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block content %}
+        <div class="row justify-content-center">
+                <h1 class="h1 mb-3 text-center font-weight-normal">Settings</h1>
+	</div>
+        <div class="row justify-content-center">
+		<form action="{{ url_for('change_pass') }}" method="post">
+                        {{ form.hidden_tag() }}
+                        <div class="form-group text-center">
+                                {{ form.username.label(for="username") }}
+                                {{ form.username(value=current_user.username, class="form-control", readonly_="readonly") }}
+                                {% for error in form.username.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                        </div>
+                        <div class="form-group text-center">
+                                {{ form.password.label(for="password") }}
+                                {{ form.password(class="form-control") }}
+                                {% for error in form.password.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                        </div>
+                        <div class="form-group text-center">
+                                {{ form.password2.label(for="password2") }}
+                                {{ form.password2(class="form-control") }}
+                                {% for error in form.password2.errors %}
+                                <span style="color: red;">[{{ error }}]</span>
+                                {% endfor %}
+                        </div>
+                        {{ form.submit(class="btn btn-ligh btn-block forms-pixs", style="background-color: #b57555;") }}
+                </form>
+		<div class="col-mb-4 offset-md-1">
+        		<div class="row justify-content-center">
+		                <h1 class="h3 mb-3 text-center font-weight-normal">My threads</h1>
+			</div>
+			<table class="table table-hover table-light w-auto" style="background-color: #b57555;">
+				<thead>
+				<tr>
+					<th scope="col">Creation Date</th>
+					<th scope="col">Theme</th>
+					<th scope="col">Author</th>
+					<th scope="col">Is private</th>
+				</tr>
+			</thead>
+			{% for th in threads_list %}
+			<tbody>
+				<tr>
+					<td>{{ th.timestamp }}</td>
+					<td><a style="color: #000" href="/posts/{{th.id}}" >{{ th.name }}</a></td>
+					<td>{{ th.author.username }}</td>
+					<td>{{ 'Yes' if th.is_private else 'No' }}</td>
+				</tr>
+			</tbody>
+			{% endfor %}
+		</table>
+	</div>
+
+        </div>
+{% endblock %}
+

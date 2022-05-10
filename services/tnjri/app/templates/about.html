@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <style>
+        body {
+            background: linear-gradient(238deg, #fd8800, #fd008f, #9700fd, #003dfd, #05c7e6, #4bd58d);
+            background-size: 1200% 1200%;
+            -webkit-animation: rainbow 30s ease infinite;
+            animation: rainbow 30s ease infinite;
+        }
+        @-webkit-keyframes rainbow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        @keyframes rainbow {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+        #shadowBox {
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.2);
+            /* Black w/opacity/see-through */
+            border: 3px solid;
+        }
+
+        .rainbow {
+            text-align: center;
+            text-decoration: underline;
+            font-size: 32px;
+            font-family: monospace;
+            letter-spacing: 5px;
+        }
+        .rainbow_text_animated {
+            background: linear-gradient(to right, #6666ff, #0099ff , #00ff00, #ff3399, #6666ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: rainbow_animation 6s ease-in-out infinite;
+            background-size: 400% 100%;
+        }
+
+        @keyframes rainbow_animation {
+            0%,100% {
+                background-position: 0 0;
+            }
+
+            50% {
+                background-position: 100% 0;
+            }
+        }
+    </style>
+</head>
+<body style="background-color: #7b8fcc;">
+<div class="middle-text">
+    <div>
+        <div style="text-align: center">
+            <img style="width:500px;" src="/static/img/tnjri.jpg"><br>
+        </div>
+        <div id="shadowBox">
+            <h3 class="rainbow rainbow_text_animated">{{welcome}}!</h3>
+        </div><br>
+        Tnjri (Armenian: Տնջրի) is a 2042-year-old giant Oriental plane tree situated nearby the village of Skhtorashen,<br>
+        de facto in the Martuni Province of the Republic of Artsakh, de jure in the Khojavend District of Azerbaijan.<br>
+        The hollow of the tree is 44 sq.m., where more than 40 people can stand. The area covered by the foliage of the tree is 1400 sq.m.<br>
+        The circumference of the tree is 27 m and the height is more than 54 m which can be compared with an 18-story building. <br>
+        The tree is situated on a valley not far from the village and stands the Tengru spring, which is the main source of irrigation for the tree.<br><br>
+
+        This secure website provides encryption/decryption mechanism based on tree. It is not strictly related to Tnjri, but you get it - TREE!
+    </div>
+</div>
+    <div class="btn-group" >
+        <button style="background-color: #7b2fcc;" onclick="location='/encrypt'">Encrypt</button>
+        <button style="background-color: #7b2fcc;" onclick="location='/decrypt'">Decrypt</button>
+        <button style="background-color: #7b2fcc;" onclick="localStorage.clear(); location='/'">Logout</button>
+    </div>
+</body>
+</html>

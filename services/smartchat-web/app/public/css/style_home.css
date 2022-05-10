@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+/* * {
+  margin: 0px;
+} */
+
+body,
+html {
+  font-family: "Mulish", sans-serif;
+  background-color: rgb(25, 92, 138);
+  margin: 0px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: rgb(22, 32, 52);
+}
+
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.header a.name {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 30px 10px;
+}
+
+.header a.active {
+  background-color: rgb(25, 92, 138);
+  color: white;
+}
+
+.header a.active:hover {
+  background-color: rgb(130, 197, 233);
+}
+
+.header-left {
+  float: left;
+  margin-left: 5%;
+}
+
+.header-right {
+  float: right;
+  margin-right: 5%;
+  padding: 20px;
+}
+
+.current-room {
+  margin-left: 5%;
+  color: white;
+  font-size: 24px;
+}
+
+.centered {
+  margin-left: 5%;
+  margin-right: 5%;
+  color: white;
+}
+.contract {
+  font-size: 25px;
+}
+
+.room-name {
+  width: 60%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  border: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.submit-btn {
+  padding: 10px;
+  width: 20%;
+  color: white;
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  border: rgb(25, 92, 138);
+  border-radius: 10px;
+  background-color: rgb(25, 92, 138);
+  background-color: rgb(0, 30, 50);
+}
+
+.submit-btn:hover {
+  background-color: rgb(130, 197, 233);
+}
+
+.my-rooms h3 {
+  font-size: 25px;
+  font-weight: lighter;
+}
+.my-rooms li {
+  font-size: 20px;
+}

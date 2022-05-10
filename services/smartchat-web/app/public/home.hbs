@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+
+    <title>SmartChat {{page-title}}</title>
+
+    <link rel="stylesheet" href="css/style_home.css" />
+  </head>
+  <body>
+    <div class="header">
+      <div class="header-left">
+        <a>
+          <img src="img/logo.jpg" />
+        </a>
+        <a class="name">SmartChat</a>
+      </div>
+      <div class="header-right">
+	      <a class="active" href="logout">{{ username }}</a>
+      </div>
+    </div>
+
+    <div class="centered">
+      <div class="contract">
+        <p>Contract address: <code>{{ contract_address }}</code></p>
+      </div>
+
+      <form>
+        <input
+          type="name"
+          placeholder="Enter room name"
+          class="room-name"
+          id = "room-name"
+          required
+        />
+        <button id="room_btn" class="submit-btn">Create new room</button>
+      </form>
+
+      <div class="my-rooms">
+        <h3>My rooms:</h3>
+	{{#each rooms}}
+	<li class="room_name"><a href="chat?roomname={{this.roomname}}"><u>{{this.roomname}}</u></a>: {{this.encryption_key}}</li>
+	{{/each}}
+      </div>
+    </div>
+  </body>
+  <script src="js/home.js"></script>
+</html>

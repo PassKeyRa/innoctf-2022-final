@@ -1,0 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  font-family: "Mulish", sans-serif;
+  margin: 0px;
+}
+
+.bg-image {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("/img/brain.jpg");
+
+  height: 100%;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.bg-text {
+  font-size: 25px;
+  color: white;
+  text-align: center;
+  top: 30%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.button button {
+  text-align: center;
+  padding: 15px 50px;
+  top: 40%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-color: white;
+  background-color: white;
+  border-radius: 10px;
+  font-family: "Mulish", sans-serif;
+  font-size: 20px;
+}
+.button button.left {
+  float: left;
+  left: 40%;
+}
+
+.button button.right {
+  float: right;
+  left: 60%;
+}
+
+.button button:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.description p {
+  width: 80%;
+  height: 25%;
+  text-align: center;
+  padding: 20px;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 20px;
+}

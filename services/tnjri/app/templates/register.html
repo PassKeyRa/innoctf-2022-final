@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <style>body{background-color: #55b34d;} .registration-form .create-account{background-color: #55b34d;} .registration-form .form-icon{background-color: #55b34d;}</style>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script>
+        function register(){
+            var login = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+            $.ajax({
+                method: "POST",
+                url: "/api/register",
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify({"login": login, "passwd": password}),
+                success: function(data, textStatus, jQxhr){
+                    localStorage.setItem('login', login);
+                    localStorage.setItem('password', password);
+                    location="/";
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    alert("Registration error");
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+    <div class="registration-form">
+        <form>
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="username" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control item" id="password" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-block create-account" onclick="register()">Create Account</button>
+            </div>
+        </form>
+        <div class="social-media">
+            <h5>Follow on social media</h5>
+            <div class="social-icons">
+                <a href="#"><i class="icon-social-facebook" title="Facebook"></i></a>
+                <a href="#"><i class="icon-social-google" title="Google"></i></a>
+                <a href="#"><i class="icon-social-twitter" title="Twitter"></i></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Encrypt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <link rel="stylesheet" href="static/css/style.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script>
+        function getTree(){
+            $.ajax({
+                method: "POST",
+                url: "/api/state/tree",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({"login": localStorage.getItem("login"), "passwd": localStorage.getItem("password"), "id": localStorage.getItem("id")}),
+                success: function(data, textStatus, jQxhr){
+                    drawTree(data["tree"]);
+                    document.getElementById('out').value = data["encrypted"];
+                }
+            });
+
+            $.ajax({
+                method: "POST",
+                url: "/api/state/key",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({"login": localStorage.getItem("login"), "passwd": localStorage.getItem("password"), "id": localStorage.getItem("id")}),
+                success: function(data, textStatus, jQxhr){
+                    document.getElementById('key').value = data["key"];
+                }
+            });
+        }
+
+        function encrypt(){
+            var msg = document.getElementById('plaintext').value;
+            var key = document.getElementById('key').value;
+            $.ajax({
+                method: "POST",
+                url: "/api/encrypt",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({"login": localStorage.getItem("login"),
+                    "passwd": localStorage.getItem("password"),
+                    "data": msg,
+                    "key": key}),
+                success: function(data, textStatus, jQxhr){
+                    getTree();
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    alert("Some error occurred")
+                }
+            });
+        }
+
+        function copyCLipboard(){
+            var copyText = document.getElementById("out");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            // navigator.clipboard.writeText(copyText.value);
+            // need HTTPS to copy to clipboard :(
+        }
+        getTree();
+    </script>
+</head>
+<body style="background-color: #48a5b5;">
+<div class="left">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="/static/js/tree.js"></script>
+</div>
+<div class="right">
+    <div class="btn-group">
+        <button onclick="location='/decrypt'">Decrypt</button>
+        <button onclick="location='/about?name='+localStorage.getItem('login')">About</button>
+        <button onclick="localStorage.clear(); location='/'">Logout</button>
+    </div>
+    <form style="height: 100%" class="registration-form">
+        <div class="form-icon">
+            <span><img src="/static/img/favicon.ico" class="icon icon-user"></span>
+        </div>
+        <div>
+            <input type="text" id="plaintext" class="form-control item" placeholder="Plaintext">
+        </div>
+        <div>
+            <input type="text" id="key" class="form-control item" placeholder="Key">
+        </div>
+        <div class="form-group" >
+            <button type="button" class="btn btn-block create-account" onclick="encrypt()">Encrypt</button>
+        </div>
+        <div>
+            <input type="text" id="out" class="form-control item2" placeholder="Ciphertext" readonly="true">
+        </div>
+        <div class="form-group" >
+            <button type="button" class="btn btn-block create-account" onclick="copyCLipboard()">Select</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

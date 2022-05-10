@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row justify-content-center">
+    <form class="form-signin" id="reg_frm" action="" method="post">
+    	<h1 class="h3 mb-3 text-center font-weight-normal">Register</h1>
+        {{ form.hidden_tag() }}
+	<div class="form-group text-center">
+            {{ form.username.label(for="username") }}
+	    {{ form.username(class="form-control") }}
+	    {% for error in form.username.errors %}
+	    <span style="color: red;">[{{ error }}]</span>
+	    {% endfor %}
+    	</div>
+    	<div class="form-group text-center">
+	    {{ form.password.label(for="password") }}
+	    {{ form.password(class="form-control", id="pass1") }}
+	    {% for error in form.password.errors %}
+	    <span style="color: red;">[{{ error }}]</span>
+	    {% endfor %}
+    	</div>
+    	<div class="form-group text-center">
+	    {{ form.password2.label(for="password2") }}
+	    {{ form.password2(class="form-control", id="pass2") }}
+	    {% for error in form.password2.errors %}
+	    <span style="color: red;">[{{ error }}]</span>
+	    {% endfor %}
+	</div>
+    	{{ form.submit(class="btn btn-ligh btn-block forms-pixs", style="background-color: #b57555;") }}
+    </form>
+    <script>
+	    window.onload = function() {
+				document.getElementById('reg_frm').onsubmit = function() {
+						    var pass1 = document.getElementById('pass1');
+						    var pass2 = document.getElementById('pass2');
+						    pass1.value = btoa(pass1.value)
+						    pass2.value = btoa(pass2.value)
+					    };
+			};
+    </script>
+    </div>
+{% endblock %}

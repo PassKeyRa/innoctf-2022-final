@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+	<div class="row justify-content-center">
+		<form action="" method="post" enctype="multipart/form-data">
+			<h1 class="h3 mb-3 text-center font-weight-normal">Create Theme</h1>
+			{{ form.hidden_tag() }}
+			<div class="form-group text-center">
+				{{ form.theme_name.label(for="username") }}
+				{{ form.theme_name(class="form-control") }}
+				{% for error in form.theme_name.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+			<div class="form-group text-center">
+				{{ form.body.label(for="body") }}
+				{{ form.body(class="form-control") }}
+				{% for error in form.body.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+			</div>
+			<div class="form-group text-center">
+				<div class="row">
+					<div class="col-mb-3">
+						{{ form.is_private.label(for="is_private") }}
+						{{ form.is_private(class="form-control", onclick="showDivs()") }}
+					</div>
+					<div id="file-div" class="col-mb-9" style="display: block;">
+						{{ form.file.label(for="file") }}
+						{{ form.file(class="form-control") }}
+					</div>
+				</div>
+				{% for error in form.file.errors %}
+				<span style="color: red;">[{{ error }}]</span>
+				{% endfor %}
+
+			</div>
+			{{ form.submit(class="btn btn-ligh btn-block forms-pixs", style="background-color: #b57555;") }}
+		</form>
+	</div>
+{% endblock %}

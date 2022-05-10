@@ -1,0 +1,144 @@
+@import url("https://fonts.googleapis.com/css2?family=Mulish&display=swap");
+/* * {
+  margin: 0px;
+} */
+
+body,
+html {
+  font-family: "Mulish", sans-serif;
+  background-color: rgb(25, 92, 138);
+  margin: 0px;
+}
+
+.header {
+  overflow: hidden;
+  background-color: rgb(22, 32, 52);
+}
+
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  border-radius: 10px;
+}
+
+.header a.name {
+  font-size: 25px;
+  font-weight: bold;
+  padding: 30px 10px;
+}
+
+.header a.active {
+  background-color: rgb(25, 92, 138);
+  color: white;
+}
+
+.header a.active:hover {
+  background-color: rgb(22, 32, 52);
+}
+
+.header-left {
+  float: left;
+  margin-left: 5%;
+}
+
+.header-right {
+  float: right;
+  margin-right: 5%;
+  padding: 20px;
+}
+
+.current-room {
+  margin-left: 5%;
+  color: white;
+  font-size: 24px;
+}
+
+.messages {
+  background-color: rgb(220, 236, 241);
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 10px;
+  padding: 10px;
+  color: rgb(69, 69, 69);
+  font-size: 18px;
+}
+
+.container {
+  background-color: rgb(181, 219, 238);
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px;
+  width: 55%;
+}
+
+.darker {
+  background-color: rgb(130, 197, 233);
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  margin-top: 10px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+
+.time-right {
+  float: right;
+  color: rgb(99, 99, 99);
+}
+
+.time-left {
+  float: right;
+  color: rgb(58, 58, 58);
+}
+
+.username {
+  color: black;
+  font-weight: bold;
+}
+
+.room-name {
+  width: 80%;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  border: rgb(255, 255, 255);
+  background-color: rgb(255, 255, 255);
+}
+
+.submit-btn {
+  padding: 10px;
+  width: 12%;
+  color: white;
+  font-size: 20px;
+  font-family: "Mulish", sans-serif;
+  border: rgb(25, 92, 138);
+  border-radius: 10px;
+  background-color: rgb(25, 92, 138);
+}
+
+.submit-btn:hover {
+  background-color: rgb(130, 197, 233);
+}

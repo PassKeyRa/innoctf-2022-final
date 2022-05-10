@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Encrypt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="icon" type="image/x-icon" href="/static/img/favicon.ico">
+    <script>
+        function decrypt(){
+            var msg = document.getElementById('encrypted').value;
+            var key = document.getElementById('key').value;
+            $.ajax({
+                method: "POST",
+                url: "/api/decrypt",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({"login": localStorage.getItem("login"),
+                    "passwd": localStorage.getItem("password"),
+                    "data": msg,
+                    "key": key}),
+                success: function(data, textStatus, jQxhr){
+                    let dec = data["decrypted"].replaceAll('\u0000','');
+                    document.getElementById('out').value = dec;
+                    drawTree(data["tree"]);
+                },
+                error: function( jqXhr, textStatus, errorThrown ){
+                    alert("Some error occurred")
+                }
+            });
+        }
+
+        function copyCLipboard(){
+            var copyText = document.getElementById("out");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            // navigator.clipboard.writeText(copyText.value);
+            // need HTTPS to copy to clipboard :(
+        }
+    </script>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body style="background-color: #347c37;">
+<div class="left">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script src="/static/js/tree.js"></script>
+</div>
+<div class="right">
+    <div class="btn-group" >
+        <button style="background-color: #4c9128;" onclick="location='/encrypt'">Encrypt</button>
+        <button style="background-color: #4c9128;" onclick="location='/about?name='+localStorage.getItem('login')">About</button>
+        <button style="background-color: #4c9128;" onclick="localStorage.clear(); location='/'">Logout</button>
+    </div>
+    <form style="height: 100%" class="registration-form">
+        <div class="form-icon" style="background-color: #4c9128;">
+            <span><img src="/static/img/favicon.ico" class="icon icon-user" ></span>
+        </div>
+        <div>
+            <input type="text" id="encrypted" class="form-control item" placeholder="Encrypted">
+        </div>
+        <div>
+            <input type="text" id="key" class="form-control item" placeholder="Key">
+        </div>
+        <div class="form-group" >
+            <button type="button" class="btn btn-block create-account" style="background-color: #4c9128;" onclick="decrypt()">Decrypt</button>
+        </div>
+        <div>
+            <input type="text" id="out" class="form-control item2" placeholder="Plaintext" readonly="true">
+        </div>
+        <div class="form-group" >
+            <button type="button" class="btn btn-block create-account" style="background-color: #4c9128;" onclick="copyCLipboard()">Select</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</body>
+</html>

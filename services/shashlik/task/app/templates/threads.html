@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+	<div class="starter-template">
+		<h1>Welcome to the Armenian forum!</h1>
+		<p class="lead">Here you can discuss the beauties of Mount Ararat, cooking juicy kebabs and wonderful Armenian cognacs!</p>
+	</div>
+	<table class="table table-hover table-light w-auto" style="background-color: #b57555;">
+		<thead>
+			<tr>
+				<th scope="col">Creation Date</th>
+				<th scope="col">Theme</th>
+				<th scope="col">Author</th>
+				<th scope="col">Is private</th>
+			</tr>
+		</thead>
+		{% for th in threads_list %}
+		<tbody>
+			<tr>
+				<td>{{ th.timestamp }}</td>
+				<td><a style="color: #000" href="/posts/{{th.id}}" >{{ th.name }}</a></td>
+			  	<td>{{ th.author.username }}</td>
+			  	<td>{{ 'Yes' if th.is_private else 'No' }}</td>
+			</tr>
+		</tbody>
+		{% endfor %}
+	</table>
+</div>
+{% endblock %}
