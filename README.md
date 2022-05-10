@@ -2,6 +2,12 @@
 
 В `./geth` находится вся инфа по запуску блокчейна и сервисов, которые его используют. Остальные сервисы запускаются стандартно: `docker-compose up`
 
+## Авторы
+
+Bogdan Kondratyev (@BoggdanInno)
+Nikolay Mikriukov (@Nmikryukov)
+Alexey Posikera (@passkeyra)
+
 ## Уязвимости
 
 В основном описаны словами, для некоторых есть эксплоиты в `./exploits`
