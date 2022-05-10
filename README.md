@@ -5,7 +5,9 @@
 ## Авторы
 
 Bogdan Kondratyev (@BoggdanInno)
+
 Nikolay Mikriukov (@Nmikryukov)
+
 Alexey Posikera (@passkeyra)
 
 ## Уязвимости
