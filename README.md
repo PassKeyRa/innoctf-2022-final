@@ -10,6 +10,8 @@ Nikolay Mikriukov (@Nmikryukov)
 
 Alexey Posikera (@passkeyra)
 
+Kseniya Kudasheva (@molberte)
+
 ## Уязвимости
 
 В основном описаны словами, для некоторых есть эксплоиты в `./exploits`
